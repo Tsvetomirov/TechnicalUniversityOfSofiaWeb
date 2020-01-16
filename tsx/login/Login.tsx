@@ -6,7 +6,7 @@ import {WindowResize, errorsAction} from "../../ts/actions/ReduxActions";
 import WindowReducerObject from "../../ts/strictTypes/WindowReducersStrictTypes/WindowReducerObject";
 import {bindActionCreators} from "redux";
 import {RefObject} from "react";
-import {store} from "../../ts/reducers";
+import {store} from "../../ts/reducers/Index";
 import Utils from "../../ts/Utils";
 import Footer from "../portal/Footer";
 interface props{

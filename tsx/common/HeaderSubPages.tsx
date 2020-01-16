@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Utils from '../../ts/Utils';
-import SearchIcon from '../common/searchIcon';
+import SearchIcon from './SearchIcon';
 import NavMenuButton from "../portal/Mobile/NavigationMenu";
 import {connect} from 'react-redux';
 import ViewType from "../../ts/strictTypes/WindowReducersStrictTypes/SubTypes/CompareViewTypes";

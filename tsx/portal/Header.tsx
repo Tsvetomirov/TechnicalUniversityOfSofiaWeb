@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Utils from '../../ts/Utils';
-import SearchIcon from '../common/searchIcon';
+import SearchIcon from '../common/SearchIcon';
 import FontToFit from "../common/FontToFit";
 import NavMenuButton from "./Mobile/NavigationMenu";
 import {connect} from 'react-redux';

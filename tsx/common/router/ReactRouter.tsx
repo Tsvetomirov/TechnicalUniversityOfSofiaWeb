@@ -4,9 +4,9 @@ import {BrowserRouter, Switch } from 'react-router-dom';
 import * as ReactDOM from "react-dom";
 import Root from "../../portal";
 import {Provider} from 'react-redux';
-import {store} from "../../../ts/reducers/index";
+import {store} from "../../../ts/reducers/Index";
 import Erasmus from "../../erasmus/Erasmus";
-import Login from "../../login/login";
+import Login from "../../login/Login";
 
 export default class App extends React.Component{
     private readonly store: any;
