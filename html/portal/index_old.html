@@ -1,0 +1,530 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Technical University of Sofia, ELFE</title>
+
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <script src="../../js/intersection-observer.js" type="text/javascript"></script>
+    <!-- remove -->
+    <!-- Owl Carousel -->
+    <link type="text/css" rel="stylesheet" href="../../css/owl.carousel.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/owl.theme.default.css" />
+
+    <!-- Magnific Popup -->
+    <link type="text/css" rel="stylesheet" href="../../css/magnific-popup.css" />
+    <!-- remove -->
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="/resources/fonts/font-awesome.min.css">
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="../../css/style.css" />
+
+    <script type ="text/javascript" src= "../../js/functions.js" ></script>
+</head>
+
+<body>
+<!-- Header -->
+<header><!--id="<?php if($_SERVER["SCRIPT_NAME"] == "/index.php"){echo "home";}else{echo "home-subpage";}?>"-->
+
+<!-- Nav -->
+<nav id="nav" class="navbar nav-transparent">
+    <div class="container">
+
+        <div class="navbar-header">
+            <!-- Logo -->
+            <div class="brand"> <!--class="navbar-brand" from bootstrap -->
+                <a href="<?php echo 'index.php';?>">
+                    <!--<div class = "miniLogoContainer">
+                        <img class="logo-alt" src="/images/logo-new.png" alt="logo">
+                        <div class = "miniFirstFigure <?php if(strpos($_SERVER["PHP_SELF"],"index")!== false){echo "homePage"; }?>" id = "miniFirstFigure">
+                        <div class ="miniPolygon2"></div>
+                        <div class = "miniPolygon1"></div>
+                        <div class = "miniPolygon3"></div>
+                        <div class = "miniPolygon4"></div>
+                    </div>
+
+                    <div class="miniHexagon"></div>
+                    <div class = "miniSecondFigure <?php if(strpos($_SERVER["PHP_SELF"],"index")!== false){echo "homePage"; }?>" id="miniSecondFigure">
+                    <div class ="miniPolygon22"></div>
+                    <div class = "miniPolygon21"></div>
+                    <div class = "miniPolygon23"></div>
+                    <div class = "miniPolygon24"></div>
+            </div>
+            <div class = "miniThirdFigure <?php if(strpos($_SERVER["PHP_SELF"],"index")!== false){echo "homePage"; }?>" id="miniThirdFigure">
+            <div class = "miniPolygon32"></div>
+            <div class = "miniPolygon31"></div>
+            <div class = "miniPolygon33"></div>
+            <div class =
+
+    </div>-->
+    </a>
+    </div>
+    <!-- /Logo -->
+
+    <!-- Collapse nav button -->
+    <div class="nav-collapse" id ="navigation-collapse">
+        <span></span>
+    </div>
+    <!-- /Collapse nav button -->
+    </div>
+
+    <!--  Main navigation  -->
+    <ul class="main-nav nav navbar-nav navbar-right">
+        <li><a href="/index.php">Home</a></li>
+        <li><a href="/courses.php">Courses</a></li>
+        <li><a href="/erasmus.php">Erasmus+</a></li>
+        <li><a href="/staff.php">Staff</a></li>
+        <li class="has-dropdown"><a href="#blog">Dropdown</a>
+            <ul class="dropdown">
+                <li><a href="blog-single.html">Dropdown test</a></li>
+            </ul>
+        </li>
+       <!-- <?php  if($gf->logged_in()){echo '<li><a href="/administration/home.php">Admin Panel</a></li>';}?>
+        <?php if(strlen($page) > 0) {?><li id = "search-trigger" onclick = "activateSearch(event,<?php echo "'".$pageGetValues."'";?>)" ><a id = "website-search" data-search-page = "<?php echo $page; ?>" ><i class="fas fa-search"></i></a></li><?php }?>-->
+        <div id="search-box">
+            <form id="search-dropdown" method="get" action="../../search.php">
+
+            </form>
+        </div>
+    </ul>
+    <!-- /Main navigation -->
+
+    </div>
+</nav>
+<!-- /Nav -->
+<!-- Background Image -->
+<div class="bg-img" style="background-image: url('http://www.tu-sofia.musclevale.com/images/background-official.webp');">
+    <div class="overlay"></div>
+</div>
+<!-- /Background Image -->
+<!-- home wrapper -->
+<div class="home_slider_wrapper">
+
+    <div id="slider_container">
+        <div class="slider_inner_container">
+            <div class="slider" data-image_id="0">
+                <div class="slider_title">
+                    <div class="slider_overlay"></div>
+                    <div class="slider_overlay_button">Read More</div>
+                    <p class="fontToFit">Test1</p>
+                </div>
+                <img src="http://www.tu-sofia.musclevale.com/images/background.jpg">
+            </div>
+            <div class="slider active" data-image_id="1">
+                <div class="slider_title">
+                    <div class="slider_overlay"></div>
+                    <p class="fontToFit">mnogo mnogo mnogo mnogo dulgo zaglavie </p>
+                </div>
+                <img src="http://www.tu-sofia.musclevale.com/images/background2.webp">
+            </div>
+            <div class="slider" data-image_id="2">
+                <div class="slider_title">
+                    <div class="slider_overlay"></div>
+                    <p class="fontToFit">Test3</p>
+                </div>
+                <img src="http://www.tu-sofia.musclevale.com/images/background.jpg">
+            </div>
+            <div class="slider" data-image_id="3">
+                <div class="slider_title">
+                    <div class="slider_overlay"></div>
+                    <p class="fontToFit">Test4</p>
+                </div>
+                <img src="http://www.tu-sofia.musclevale.com/images/background2.webp">
+            </div>
+            <div class="slider_nav_menu">
+                <div id="button_left"><i class="fas fa-chevron-left"></i></div>
+                <div class="slider_pictures" data-image_id="0"><img src="http://www.tu-sofia.musclevale.com/images/background.jpg"></div>
+                <div class="slider_pictures active" data-image_id="1"><img src="http://www.tu-sofia.musclevale.com/images/background2.webp"></div>
+                <div class="slider_pictures" data-image_id="2"><img src="http://www.tu-sofia.musclevale.com/images/background.jpg"></div>
+                <div class="slider_pictures" data-image_id="3"><img src="http://www.tu-sofia.musclevale.com/images/background2.webp"></div>
+                <div id="button_right"><i class="fas fa-chevron-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="home-wrapper">
+        <div class="container_index">
+            <div class="row">
+                <!-- home content -->
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="home-content">
+                        <h1 class="white-text">ELFE WEBSITE</h1>
+                        <p class="white-text">Paragraph
+                        </p>
+                        <button class="white-btn">Button1</button>
+                        <button class="main-btn">Button2</button>
+                    </div>
+                </div>
+                <!-- /home content -->
+
+            </div>
+        </div>
+    </div>
+    <!-- /home wrapper -->
+</div>
+</header>
+<!-- /Header -->
+<link href="../../css/owl.carousel.css" rel = "stylesheet" >
+<!-- Portfolio -->
+<div id="portfolio" class="section md-padding bg-grey">
+
+
+    <div class="container">
+
+
+        <div class="row">
+
+
+            <div class="section-header text-center">
+                <h2 class="title">Courses </h2>
+            </div>
+
+
+
+            <div class="col-md-3 col-xs-6 work" >
+                <div class = "course-header">Bachelour Degree</div>
+                <img class="img-responsive js-lazy-image" src="/images/testimonials/graduation-1.webp" alt="">
+                <div class="overlay"></div>
+                <div class="work-content">
+                    <span>Bachelour Degree</span>
+                    <h3>Industrial Engineering</h3>
+                    <div class="work-link">
+                        <a href="#"><i class="fa fa-external-link"></i></a>
+                        <a class="lightbox" href="http://www.tu-sofia.musclevale.com/courses.php?course=b&subj=eng"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+                <div class="course-footer">Industrial Engineering</div>
+            </div>
+
+
+
+            <div class="col-md-3 col-xs-6 work">
+                <div class = "course-header">Master Degree</div>
+                <img class="img-responsive js-lazy-image" src="/images/testimonials/graduation-2.webp" alt="">
+                <div class="overlay"></div>
+                <div class="work-content">
+                    <span>Master Degree</span>
+                    <h3>Industrial Engineering</h3>
+                    <div class="work-link">
+                        <a href="#"><i class="fa fa-external-link"></i></a>
+                        <a class="lightbox" href="http://www.tu-sofia.musclevale.com/courses.php?course=m&subj=eng"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+                <div class="course-footer">Industrial Engineering</div>
+            </div>
+
+
+            <div class="col-md-3 col-xs-6 work">
+                <div class = "course-header">Master Degree</div>
+                <img class="img-responsive js-lazy-image" src="/images/testimonials/graduation-3.webp" alt="">
+                <div class="overlay"></div>
+                <div class="work-content">
+                    <span>Master Degree</span>
+                    <h3>ITBM</h3>
+                    <div class="work-link">
+                        <a href="#"><i class="fa fa-external-link"></i></a>
+                        <a class="lightbox" href="http://www.tu-sofia.musclevale.com/courses.php?course=m&subj=ITBM"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+                <div class="course-footer">ITBM</div>
+            </div>
+
+
+            <div class="col-md-3 col-xs-6 work">
+                <div class = "course-header">Master Degree</div>
+                <img class="img-responsive js-lazy-image" src="/images/testimonials/graduation-4.webp" alt="">
+                <div class="overlay"></div>
+                <div class="work-content">
+                    <span>Master Degree</span>
+                    <h3>E-Management</h3>
+                    <div class="work-link">
+                        <a href="#"><i class="fa fa-external-link"></i></a>
+                        <a class="lightbox" href="http://www.tu-sofia.musclevale.com/courses.php?course=m&subj=management"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+                <div class="course-footer">E-Management</div>
+            </div>
+
+        </div>
+        <!-- /Row -->
+
+    </div>
+    <!-- /Container -->
+
+</div>
+<!-- Numbers -->
+<div id="numbers" class="section sm-padding">
+
+    <!-- Background Image -->
+    <div class="bg-img" style="background-image: url('/images/TU-%20Sofia%20Library.webp');">
+        <div class="overlay"></div>
+    </div>
+    <!-- /Background Image -->
+
+    <!-- Container -->
+    <div class="container">
+
+        <!-- Row -->
+        <div class="row">
+            <!-- number -->
+            <div class="col-sm-3 col-xs-6">
+                <div class="number">
+                    <i class="fa fa-users"></i>
+                    <h3 class="white-text"><span class="counter" id = "counter1">200</span></h3>
+                    <span class="white-text">Happy clients</span>
+                </div>
+            </div>
+            <!-- /number -->
+
+            <!-- number -->
+            <div class="col-sm-3 col-xs-6">
+                <div class="number">
+                    <i class="fa fa-file-contract"></i>
+                    <h3 class="white-text"><span class="counter" id = "counter2">2</span></h3>
+                    <span class="white-text">Contracts</span>
+                </div>
+            </div>
+            <!-- /number -->
+
+            <!-- number -->
+            <div class="col-sm-3 col-xs-6">
+                <div class="number">
+                    <i class="fa fa-file"></i>
+                    <h3 class="white-text"><span class="counter" id = "counter3">154</span>K</h3>
+                    <span class="white-text">Documents</span>
+                </div>
+            </div>
+            <!-- /number -->
+
+            <!-- number -->
+            <div class="col-sm-3 col-xs-6">
+                <div class="number">
+                    <i class="fa fa-file"></i>
+                    <h3 class="white-text"><span class="counter" id = "counter4">45</span></h3>
+                    <span class="white-text">Projects completed</span>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <!-- /Row -->
+
+    </div>
+    <!-- /Container -->
+
+</div>
+<!-- /Numbers -->
+<div class="portfolio" class="section md-padding bg-grey">
+
+
+    <div class="container">
+
+
+        <div class="row student-menu" id = "student-menu">
+            <div class = "submenu">
+                <h1>Student Networks</h1>
+                <a href = "https://www.studsavet.org" target = "_blank" class="item"><img class= "js-lazy-image" src = "https://yt3.ggpht.com/a/AGF-l7-BBIcC888A2qYc3rB44rST01IEYDG3uzbU_A=s900-c-k-c0xffffffff-no-rj-mo"/><h6>Union of TU Sofia</h6></a>
+                <a href = "https://www.estiem.org" target = "_blank" class="item"><img class= "js-lazy-image" src = "http://tu-sofia.musclevale.com/images/logos/ESTIEM_Logo_.webp"/><h6>Network ESTIEM</h6></a>
+                <a href = "https://www.bestsofia.org" target = "_blank" class="item js-lazy-image"><img class= "js-lazy-image" src = "http://tu-sofia.musclevale.com/images/logos/best-logo.jpg"/><h6>Network BEST</h6></a>
+                <a href = "https://www.aiesec.bg" target = "_blank" class="item"><img class= "js-lazy-image" src = "http://tu-sofia.musclevale.com/images/logos/AIESEC-logo.png"/><h6>Network AIESEC</h6></a>
+                <a href = "https://www.alumni.tu-sofia.bg" target = "_blank" class="item"><img class= "js-lazy-image" src = "https://career.tu-sofia.bg//images/Logo-KC-ALUMNI-small.png"/><h6>Alumni center</h6></a>
+            </div>
+            <div class = "submenu">
+                <h1>Additional resources</h1>
+                <a href = "https://www.student.tu-sofia.bg" target = "_blank" class="item"><img class= "js-lazy-image" src="https://student.tu-sofia.bg/Templates/img/uiss.gif"/><h6>UISS System</h6></a>
+                <a href = "https://www.career.tu-sofia.bg" target = "_blank" class="item"><img class= "js-lazy-image" src = "https://career.tu-sofia.bg//images/Logo-KC-ALUMNI-small.png"/><h6 href = "https://www.career.tu-sofia.bg" target = "_blank">Carrier center</h6></a>
+                <a href = "https://www.tusmail.tu-sofia.bg" target = "_blank" class="item"><img class= "js-lazy-image" src="https://tusmail.tu-sofia.bg/skins/larry/images/logo-emaill-large.png"/><h6 href = "https://www.tusmail.tu-sofia.bg" target = "_blank">e-Mail</h6></a>
+            </div>
+            <div class="submenu">
+                <h1>Examination schedule</h1>
+                <a href="https://tu-sofia.bg/examsfiles/%D0%A4%D0%90%D0%98%D0%9E-%D0%98%D0%98--potok-18-kurs-1.html" target="_blank" class="item"><img class= "js-lazy-image" src="http://tu-sofia.musclevale.com/images/testimonials/schedule.png"/><h6>Indusrial Engieering - year I</h6></a>
+                <a href="https://tu-sofia.bg/examsfiles/%D0%A4%D0%90%D0%98%D0%9E-%D0%98%D0%98--potok-18-kurs-2.html" target="_blank" class="item"><img class= "js-lazy-image" src="http://tu-sofia.musclevale.com/images/testimonials/schedule.png"/><h6>Indusrial Engieering - year II</h6></a>
+                <a href="https://tu-sofia.bg/examsfiles/%D0%A4%D0%90%D0%98%D0%9E-%D0%98%D0%98--potok-18-kurs-3.html" target="_blank" class="item"><img class= "js-lazy-image" src="http://tu-sofia.musclevale.com/images/testimonials/schedule.png"/><h6>Indusrial Engieering - year III</h6></a>
+                <a href="https://tu-sofia.bg/examsfiles/%D0%A4%D0%90%D0%98%D0%9E-%D0%98%D0%98--potok-18-kurs-4.html" target="_blank" class="item"><img class= "js-lazy-image" src="http://tu-sofia.musclevale.com/images/testimonials/schedule.png"/><h6>Indusrial Engieering - year IV</h6></a>
+            </div>
+
+        </div>
+        <!-- /Row -->
+
+    </div>
+    <!-- /Container -->
+
+</div>
+<!-- Numbers -->
+<!-- Testimonial -->
+<div id="testimonial" class="section md-padding">
+
+    <!-- Background Image -->
+    <div class="bg-img" style="background-image: url('../../images/testimonials/background3.webp');">
+        <div class="overlay"></div>
+    </div>
+    <!-- /Background Image -->
+
+    <!-- Container -->
+    <div class="container">
+
+        <!-- Row -->
+        <div class="row">
+
+            <!-- Testimonial slider -->
+            <div class="col-md-10 col-md-offset-1">
+                <div id="testimonial-slider" class="owl-carousel owl-theme owl-loaded owl-drag">
+
+                    <!-- testimonial -->
+                    <div class="testimonial">
+                        <div class="testimonial-meta">
+                            <img class= "js-lazy-image" src="../../images/testimonials/perso1.jpg" alt="">
+                            <h3 class="white-text">John Doe</h3>
+                            <span>Web Designer</span>
+                        </div>
+                        <p class="white-text">Molestie at elementum eu facilisis sed odio. Scelerisque in dictum non consectetur a erat. Aliquam id diam maecenas ultricies mi eget mauris.</p>
+                    </div>
+                    <!-- /testimonial -->
+
+                    <!-- testimonial -->
+                    <div class="testimonial">
+                        <div class="testimonial-meta">
+                            <img src="../../images/testimonials/perso2.jpg" alt="">
+                            <h3 class="white-text">John Doe</h3>
+                            <span>Web Designer</span>
+                        </div>
+                        <p class="white-text">Molestie at elementum eu facilisis sed odio. Scelerisque in dictum non consectetur a erat. Aliquam id diam maecenas ultricies mi eget mauris.</p>
+                    </div>
+                    <!-- /testimonial -->
+
+                </div>
+            </div>
+            <!-- /Testimonial slider -->
+
+        </div>
+        <!-- /Row -->
+
+    </div>
+    <!-- /Container -->
+
+</div>
+<!-- /Testimonial -->
+<!-- /Testimonial -->
+<section class = "bg-secondary">
+
+    <div class = "container">
+
+
+        <div class = "row align-children">
+
+
+            <div class = "col-md-4 col-sm-5 mb-xs-24 text-center">
+
+                <div class = "section-header">
+                    <h3 class = "title"> Erasmus+</h3>
+                    <div class = "mb32">
+                        <p>Erasmus is the European Union's flagship educational exchange programme for Higher Education students, teachers and institutions. It was introduced with the aim of increasing student mobility within Europe. Erasmus forms part of the EU Lifelong Learning Programme (2007-2013).
+                            The Erasmus programme enables students at higher education institutions to spend an integrated period of study, or work placement, of between 3 months and 12 months in another participating country.</p>
+                    </div>
+                    <a href  = "../../erasmus.php" class = "btn btn-lg btn-filled">Erasmus +</a>
+                </div>
+
+
+            </div>
+            <div class = "col-md-7 col-md-offset-1 col-sm-6 col-sm-offset-1 text-center">
+                <img class="img-responsive js-lazy-image" id= "erasmus-background" alt="Portfolio Section" src="https://www.tu-sofia.musclevale.com/images/erasmus.webp">
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+<script>window.addEventListener("load",Array[counterMainPage(),slideInIcons()]);</script>
+<!-- Footer -->
+<footer id="footer" class="section">
+    <script type = "text/javascript" href="/js/functions.js"></script>
+    <!-- container -->
+    <div class="">
+
+        <!-- row -->
+        <div class="">
+
+            <!-- footer logo -->
+            <div class="col-md-6">
+                <div class="footer-logo">
+                    <a class="logo" href="/index.php">
+                        <img src="/images/logo-new.png" alt="logo">
+                    </a>
+                </div>
+            </div>
+            <!-- footer logo -->
+
+
+            <!-- footer nav -->
+            <div class="col-md-6">
+                <ul class="footer-nav">
+                    <li><a href="<?php echo $_SERVER['HTTP_HOST']; ?>">Home</a></li>
+                    <li><a href="/courses.php">Courses</a></li>
+                    <li><a href="/erasmus.php">Erasmus+</a></li>
+                    <li><a href="/staff.php">Staff</a></li>
+
+                </ul>
+            </div>
+            <!-- /footer nav -->
+
+        </div>
+        <!-- /row -->
+
+        <!-- row -->
+        <div id="bottom-footer" class="row">
+
+            <!-- social -->
+            <div class="col-md-4 col-md-push-9">
+                <ul class="footer-social">
+                    <li><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#" class="google-plus"><i class="fab fa-google-plus"></i></a></li>
+                    <li><a href="#" class="youtube"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+            </div>
+            <!-- /social -->
+
+            <!-- copyright -->
+            <div class="footer-items">
+                <div class="col-md-2">
+                    <div class = "contact-us">
+                        <h4>Contact us</h4>
+
+                        <li><a href = "https://www.google.com/search?q=TU Sofia Elfe" >Technical University of Sofia 8, Kliment Ohridski blvd, Sofia buliding 2, office 2441&nbsp</a></li>
+                        <li><i class="fas fa-phone"></i><a href="#">  +359 2 965 2447</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="#">  natali_trapova@tu-sofia.bg</a></li>
+
+                    </div>
+                </div>
+                <!--<div><img src = "/images/TU - MAPS.jpg"/></div>-->
+                <div class="col-md-2">
+                    <div id="map"><h4>Find us</h4><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2004.115951890487!2d23.353569630568032!3d42.657173348803504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa842791548ce7%3A0x5c3a3691d990d279!2sTechnical+University!5e0!3m2!1sen!2sbg!4v1555614333023!5m2!1sen!2sbg" width="300" height="150" frameborder="0" style="border:0" allowfullscreen></iframe></div>
+
+                </div>
+                <div class="footer-copyright">
+                </div>
+            </div>
+            <!-- /copyright -->
+
+        </div>
+        <!-- row -->
+
+    </div>
+    <!-- /container -->
+
+</footer>
+<!-- /Footer -->
+
+</body>
+</html>
