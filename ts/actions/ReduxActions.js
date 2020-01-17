@@ -15,10 +15,10 @@ export const SearchActions = () => {
         });
     };
 
-export const WindowResize = (windowResolution) => {
+export const WindowResize = () => {
     return({
         type: "resize",
-        payload: windowResolution
+        payload: true
     })
 };
 

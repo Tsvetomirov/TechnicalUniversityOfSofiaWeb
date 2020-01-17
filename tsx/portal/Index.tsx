@@ -10,11 +10,15 @@ import LiveCounter from "./IndexElements/LiveCounter";
 import {Testimonials} from "./IndexElements/Testimonials";
 import WindowReducerObject from "../../ts/strictTypes/WindowReducersStrictTypes/WindowReducerObject";
 import ViewType from "../../ts/strictTypes/WindowReducersStrictTypes/SubTypes/CompareViewTypes";
+import StaticReducerTemplate from "../../ts/strictTypes/StaticReducerST/StaticReducerTemplate";
+import StaticReducerNetworkTemplate from "../../ts/strictTypes/StaticReducerST/StaticReducerNetworkTemplate";
+import StaticReducerNetworkInfoTemplate from "../../ts/strictTypes/StaticReducerST/StaticReducerNetworkInfoTemplate";
+import StaticReducerCoursesTemplate from "../../ts/strictTypes/StaticReducerST/StaticReducerCoursesTemplate";
 interface IndexProps{
-    mainPageStaticReducer: any;
+    mainPageStaticReducer: StaticReducerTemplate;
     windowReducers: WindowReducerObject;
-    contentActionCreator: any;
-    windowActionCreator: any;
+    contentActionCreator: ()=>{type:string, payload: boolean};
+    windowActionCreator: ()=>{type:string, payload: boolean};
 }
 class Root extends React.Component<IndexProps>{
 
@@ -24,14 +28,13 @@ class Root extends React.Component<IndexProps>{
         this.props.windowActionCreator();
     }
     public render (){
-        const StudentNetworks = () => {
+        const StudentNetworks = (props): JSX.Element => {
             return(
-                Utils.isNotNull(this.props.mainPageStaticReducer.networks) &&
-                this.props.mainPageStaticReducer.networks.map((value, key) => {
-                    return(
+                Utils.isNotNull(props) &&
+                props.map((value :StaticReducerNetworkTemplate, key: number) =>
                         <div className="submenu" key={key}>
                             <h1>{value.name}</h1>
-                            {value.info.map((value, key)=>
+                            {value.info.map((value: StaticReducerNetworkInfoTemplate, key)=>
                                     <a key={key}
                                        href={value.website}
                                        target={"_blank"}
@@ -42,7 +45,6 @@ class Root extends React.Component<IndexProps>{
                             )}
                         </div>
                     )
-                })
             );
         };
         return(
@@ -59,7 +61,7 @@ class Root extends React.Component<IndexProps>{
                                 <div className={"courses-content"}>
                                     {Utils.isNotNull(this.props.mainPageStaticReducer.courses)
                                     && this.props.mainPageStaticReducer.courses.map(
-                                        (value, key) =>
+                                        (value: StaticReducerCoursesTemplate, key:number) =>
                                             <Courses
                                                 key={key}
                                                 degree={value.degree}
@@ -76,7 +78,7 @@ class Root extends React.Component<IndexProps>{
                 <div className="section md-padding bg-grey">
                     <div className="container">
                         <div className="row student-menu" id="student-menu">
-                            <StudentNetworks/>
+                            <StudentNetworks props={this.props.mainPageStaticReducer.networks}/>
                         </div>
                     </div>
                 </div>
