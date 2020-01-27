@@ -1,5 +1,4 @@
 import {store} from "../reducers";
-
 export const staticContent = () => {
   return(
       {
@@ -7,6 +6,22 @@ export const staticContent = () => {
           payload: true
       }
   )
+};
+export const activeSlide = (sliderNumber) => {
+    return(
+        {
+            type:"activeSlide",
+            payload: sliderNumber
+        }
+    )
+};
+export const loadSlideContent = () => {
+    return(
+        {
+            type:"loadSlideContent",
+            payload: true
+        }
+    )
 };
 export const SearchActions = () => {
         return({

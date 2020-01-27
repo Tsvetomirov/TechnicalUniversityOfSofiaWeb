@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Utils from '../../ts/Utils';
 import SearchIcon from '../common/SearchIcon';
-import FontToFit from "../common/FontToFit";
 import NavMenuButton from "./Mobile/NavigationMenu";
 import {connect} from 'react-redux';
 import ViewType from "../../ts/strictTypes/WindowReducersStrictTypes/SubTypes/CompareViewTypes";
 import WindowReducerObject from "../../ts/strictTypes/WindowReducersStrictTypes/WindowReducerObject";
 import {bindActionCreators} from "redux";
 import {userDataAction} from "../../ts/actions/ReduxActions";
+import Slider from "./IndexElements/Slider";
 export interface HeaderProps{
     uicontext: boolean;
     buttonSwitch: boolean;
@@ -23,9 +23,6 @@ class Header <T extends HeaderProps> extends React.Component<T, {}>{
     }
 
     public render() {
-        var test;
-        Utils.isPromise(this.props.userData) && this.props.userData.then(res=>{test = res[0]});
-        console.log(test);
         return (
             <header id={Utils.getURLPageName(window.location.href) === "index.html" ? "home" : "home-subpage"}>
                 <nav id="nav" className={this.props.buttonSwitch ?
@@ -86,51 +83,7 @@ class Header <T extends HeaderProps> extends React.Component<T, {}>{
                     <div className="overlay"/>
                 </div>
                 <div className="home_slider_wrapper">
-                    <div id="slider_container">
-                        <div className="slider_inner_container">
-                            <div className="slider" data-image_id="0">
-                                <div className="slider_title">
-                                    <div className="slider_overlay"/>
-                                    <div className="slider_overlay_button">Read More</div>
-                                    <p className="fontToFit">Test1</p>
-                                </div>
-                                <img src="http://www.tu-sofia.musclevale.com/images/background.jpg" alt={""}/>
-                            </div>
-                            <div className="slider active" data-image_id="1">
-                                <div className="slider_title">
-                                    <div className="slider_overlay"/>
-                                    <div className={"slider_message"}><FontToFit content={"mnogo mnogo mnogo mnogo dulgo zaglavie"}/></div>
-                                </div>
-                                <img src="http://www.tu-sofia.musclevale.com/images/background2.webp" alt={""}/>
-                            </div>
-                            <div className="slider" data-image_id="2">
-                                <div className="slider_title">
-                                    <div className="slider_overlay"/>
-                                    <p className="fontToFit">Test3</p>
-                                </div>
-                                <img src="http://www.tu-sofia.musclevale.com/images/background.jpg" alt={""}/>
-                            </div>
-                            <div className="slider" data-image_id="3">
-                                <div className="slider_title">
-                                    <div className="slider_overlay"/>
-                                    <p className="fontToFit">Test4</p>
-                                </div>
-                                <img src="http://www.tu-sofia.musclevale.com/images/background2.webp" alt={""}/>
-                            </div>
-                            <div className="slider_nav_menu">
-                                <div id="button_left"><i className="fas fa-chevron-left"/></div>
-                                <div className="slider_pictures" data-image_id="0"><img
-                                    src="http://www.tu-sofia.musclevale.com/images/background.jpg" alt={""}/></div>
-                                <div className="slider_pictures active" data-image_id="1"><img
-                                    src="http://www.tu-sofia.musclevale.com/images/background2.webp" alt={""}/></div>
-                                <div className="slider_pictures" data-image_id="2"><img
-                                    src="http://www.tu-sofia.musclevale.com/images/background.jpg" alt={""}/></div>
-                                <div className="slider_pictures" data-image_id="3"><img
-                                    src="http://www.tu-sofia.musclevale.com/images/background2.webp" alt={""}/></div>
-                                <div id="button_right"><i className="fas fa-chevron-right"/></div>
-                            </div>
-                        </div>
-                    </div>
+                            <Slider/>
                     <div className="home-wrapper">
                         <div className="container_index">
                             <div className="row">

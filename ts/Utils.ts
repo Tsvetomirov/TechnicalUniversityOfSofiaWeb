@@ -6,6 +6,9 @@ export default abstract class Utils{
     static isPromise(obj){
         return typeof obj.then === 'function';
     }
+    static isEmptyObject(obj){
+        return Object.entries(obj).length === 0;
+    }
 
     static isNotNull(param){
         return param != undefined || param != null;

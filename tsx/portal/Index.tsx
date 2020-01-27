@@ -27,26 +27,26 @@ class Root extends React.Component<IndexProps>{
         this.props.contentActionCreator();
         this.props.windowActionCreator();
     }
+     StudentNetworks = (props): JSX.Element => {
+        return(
+            Utils.isNotNull(props) &&
+            props.map((value :StaticReducerNetworkTemplate, key: number) =>
+                <div className="submenu" key={key}>
+                    <h1>{value.name}</h1>
+                    {value.info.map((value: StaticReducerNetworkInfoTemplate, key)=>
+                        <a key={key}
+                           href={value.website}
+                           target={"_blank"}
+                           className={"item"}>
+                            <img src={value.image}/>
+                            <h6>{value.content}</h6>
+                        </a>
+                    )}
+                </div>
+            )
+        );
+    };
     public render (){
-        const StudentNetworks = (props): JSX.Element => {
-            return(
-                Utils.isNotNull(props) &&
-                props.map((value :StaticReducerNetworkTemplate, key: number) =>
-                        <div className="submenu" key={key}>
-                            <h1>{value.name}</h1>
-                            {value.info.map((value: StaticReducerNetworkInfoTemplate, key)=>
-                                    <a key={key}
-                                       href={value.website}
-                                       target={"_blank"}
-                                       className={"item"}>
-                                            <img src={value.image}/>
-                                            <h6>{value.content}</h6>
-                                    </a>
-                            )}
-                        </div>
-                    )
-            );
-        };
         return(
             <div className={this.props.windowReducers.viewType === ViewType.LANDSCAPE
                 ? "body landscape"
@@ -78,7 +78,7 @@ class Root extends React.Component<IndexProps>{
                 <div className="section md-padding bg-grey">
                     <div className="container">
                         <div className="row student-menu" id="student-menu">
-                            <StudentNetworks props={this.props.mainPageStaticReducer.networks}/>
+                            {this.StudentNetworks(this.props.mainPageStaticReducer.networks)}
                         </div>
                     </div>
                 </div>

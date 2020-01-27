@@ -6,6 +6,8 @@ import {inViewPort} from "./ElementReducers";
 import {mobileMenuReducer} from "./MobileMenuReducer";
 import {printErrors} from "./ErrorsReducer";
 import {ServerReducer} from "./ServerReducer";
+import {SliderReducer} from "./SliderReducer";
+import {SliderContentReducer} from "./SliderContentReducer";
 
 export const combinedReducers = combineReducers({
     mainPageStaticReducer: mainPageStaticReducer,
@@ -15,7 +17,9 @@ export const combinedReducers = combineReducers({
     elementReducer: inViewPort,
     mobileMenuNavButton: mobileMenuReducer,
     printErrors: printErrors,
-    serverReducer: ServerReducer
+    serverReducer: ServerReducer,
+    sliderReducer: SliderReducer,
+    sliderContentReducer: SliderContentReducer
 });
 
 export const store = createStore(combinedReducers);

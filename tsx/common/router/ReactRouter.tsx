@@ -8,6 +8,7 @@ import {store} from "../../../ts/reducers/Index";
 import Erasmus from "../../erasmus/Erasmus";
 import Login from "../../login/Login";
 
+
 export default class App extends React.Component{
     private readonly store: any;
     public constructor(props){
