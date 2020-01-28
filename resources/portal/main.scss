@@ -1030,6 +1030,7 @@ background: transparent;
   border-radius: 0 3vh 3vh 0;
   font-weight: bold;
   position: absolute;
+  z-index: 2;
 }
 .slider_title{
   position: absolute;
@@ -1041,6 +1042,11 @@ background: transparent;
   padding: 3% 0;
   animation-delay:0.3s;
   animation: slideIn 0.5s;
+  & p{
+    z-index: 2;
+    position: relative;
+    color: white;
+  }
 }
 .slider_message{
   position: relative;
