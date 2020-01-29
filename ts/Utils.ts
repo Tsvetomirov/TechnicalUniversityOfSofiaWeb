@@ -9,6 +9,9 @@ export default abstract class Utils{
     static isEmptyObject(obj){
         return Object.entries(obj).length === 0;
     }
+    static isNotEmptyObject(obj){
+        return Object.entries(obj).length >= 1;
+    }
 
     static isNotNull(param){
         return param != undefined || param != null;

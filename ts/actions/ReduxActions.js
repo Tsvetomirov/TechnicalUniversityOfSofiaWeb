@@ -56,16 +56,17 @@ export function mobileMenuButton(){
         payload: true
     })
 }
-export function errorsAction(apiResult){
+export function errorsAction(apiError){
     return({
         type:"error",
-        payload:apiResult
+        payload:apiError
     })
 }
 
-export function userDataAction(){
+export function getUserData(userData){
     return({
-        type:"userData"
+        type:"getData",
+        payload: userData
     })
 }
 window.addEventListener('resize',()=>store.dispatch(WindowResize()));

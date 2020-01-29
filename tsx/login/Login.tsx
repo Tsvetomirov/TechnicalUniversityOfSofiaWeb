@@ -2,65 +2,72 @@ import * as React from 'react';
 import ViewType from "../../ts/strictTypes/WindowReducersStrictTypes/SubTypes/CompareViewTypes";
 import SubHeader from "../common/HeaderSubPages";
 import {connect} from 'react-redux';
-import {WindowResize, errorsAction} from "../../ts/actions/ReduxActions";
+import {WindowResize, errorsAction, getUserData} from "../../ts/actions/ReduxActions";
 import WindowReducerObject from "../../ts/strictTypes/WindowReducersStrictTypes/WindowReducerObject";
 import {bindActionCreators} from "redux";
 import {RefObject} from "react";
-import {store} from "../../ts/reducers/Index";
 import Utils from "../../ts/Utils";
 import Footer from "../portal/Footer";
 interface props{
     windowReducers: WindowReducerObject;
     resize: ()=>{type:string, payload: number};
-    printErrors: any;
+    printErrors: (errors: [])=>{};
     showErrors: any;
+    getUserData: (userData)=>{};
+    userData: any;
 }
 
 class Login extends React.Component<props>{
     private readonly username: RefObject<HTMLInputElement>;
     private readonly password: RefObject<HTMLInputElement>;
+    public requestIsSent: number;
     constructor(props){
         super(props);
         this.props.resize();
         this.username = React.createRef();
         this.password = React.createRef();
+        sessionStorage.clear();
     }
     countRequests(): number{
-        isNaN(sessionStorage.getItem("requestCount")) && sessionStorage.setItem("requestCount", 0);
-
-        Utils.isNotNull(sessionStorage.getItem("requestCount"))
-            ? sessionStorage.setItem("requestCount",parseInt(sessionStorage.getItem("requestCount"))+1)
-            : sessionStorage.setItem("requestCount", 1);
+        Utils.isNotNull(sessionStorage.getItem("requestCount")) && this.requestIsSent === 1
+            ? sessionStorage.setItem("requestCount",(parseInt(sessionStorage.getItem("requestCount"))+1).toString())
+            : sessionStorage.setItem("requestCount", "1");
+        this.requestIsSent = 0;
         return parseInt(sessionStorage.getItem("requestCount"));
     }
     async loginRequest(){
-        const request = await(fetch('/server/loginAPI.php',{
-            method:"post",
-            headers:{
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(
-                {"credentials":
-                        {
-                            "username":Utils.isNotNull(this.username) &&
-                                this.username.current.value,
-                            "password":Utils.isNotNull(this.password) &&
-                            this.password.current.value
-                        }
+            await(fetch('/server/loginAPI.php',{
+                method:"post",
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(
+                    {"credentials":
+        {
+                                "username":Utils.isNotNull(this.username) &&
+                                    this.username.current.value,
+                                "password":Utils.isNotNull(this.password) &&
+                                    this.password.current.value
+                            }
+                    })
+            })
+                .then(res=>res.json())
+                .then((result)=>{
+                    if(result[0] === true){
+                        this.props.getUserData(result.userData);
+                        //window.location.href = "/portal/index.html";
+                    }else{
+                        this.props.printErrors(result);
+                    }
                 })
-        }));
-        const result = await request.json();
-        if(result[0] === true){
-            window.location.href = "/portal/index.html";
-        }else{
-            store.dispatch(this.props.printErrors(result));
-        }
+                .catch((error)=>this.props.printErrors(error)));
+            this.requestIsSent = 1;
     }
     public render(){
         return(
             <div className={this.props.windowReducers.viewType === ViewType.LANDSCAPE
                 ? "body landscape"
-                :"body portrait"}>
+                : "body portrait"}>
                 <SubHeader windowReducer={this.props.windowReducers}/>
                 <div id="primary" className="content-area">
                     <div className="row">
@@ -93,8 +100,8 @@ class Login extends React.Component<props>{
                                                         type="password" name="login_password" id="password"
                                                            tabIndex={2} className="form-control" placeholder="Парола"/>
                                                 </div>
-                                                {Utils.isNotEmpty(this.props.showErrors) &&
-                                                <div className={"text-center"}>
+                                                {Utils.isNotEmptyObject(this.props.showErrors) &&
+                                                <div className={"errors text-center"}>
                                                     {this.props.showErrors.map(result=>result)}
                                                 </div>}
                                                 <div className="form-group text-center">
@@ -147,12 +154,14 @@ class Login extends React.Component<props>{
 export default connect((mapStateToProps)=>{
     return{
         windowReducers: mapStateToProps.windowReducers,
-        showErrors: mapStateToProps.printErrors
+        showErrors: mapStateToProps.printErrors,
+        userData: mapStateToProps.userData
     }
 },
     (dispatch)=>{
     return bindActionCreators({
         resize: WindowResize,
-        printErrors: errorsAction
+        printErrors: errorsAction,
+        getUserData: getUserData
     }, dispatch)
 })(Login)
