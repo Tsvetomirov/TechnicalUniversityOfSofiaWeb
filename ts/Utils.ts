@@ -3,6 +3,16 @@ export default abstract class Utils{
         let array: string[]= url.split("/");
         return array.pop();
     }
+    static getCookie(name) {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for(let i=0;i < ca.length;i++) {
+            let c = ca[i];
+            if (c.indexOf(nameEQ) == 0)
+                return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
     static isPromise(obj){
         return typeof obj.then === 'function';
     }

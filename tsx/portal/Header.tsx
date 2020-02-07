@@ -5,21 +5,16 @@ import NavMenuButton from "./Mobile/NavigationMenu";
 import {connect} from 'react-redux';
 import ViewType from "../../ts/strictTypes/WindowReducersStrictTypes/SubTypes/CompareViewTypes";
 import WindowReducerObject from "../../ts/strictTypes/WindowReducersStrictTypes/WindowReducerObject";
-import {bindActionCreators} from "redux";
-import {userDataAction} from "../../ts/actions/ReduxActions";
 import Slider from "./IndexElements/Slider";
 export interface HeaderProps{
     uicontext: boolean;
     buttonSwitch: boolean;
     windowReducer?: WindowReducerObject;
-    userAction: any;
-    userData: any;
 }
 class Header <T extends HeaderProps> extends React.Component<T, {}>{
     public userData: object | boolean;
     constructor(props){
         super(props);
-        props.userAction();
     }
 
     public render() {
@@ -108,9 +103,6 @@ class Header <T extends HeaderProps> extends React.Component<T, {}>{
 export default connect ((mapStateToProps)=>{
         return {
             windowReducer: mapStateToProps.windowReducers,
-            buttonSwitch: mapStateToProps.mobileMenuNavButton,
-            userData: mapStateToProps.serverReducer
+            buttonSwitch: mapStateToProps.mobileMenuNavButton
         }
-    },(dispatch)=>bindActionCreators({
-    userAction: userDataAction
-},dispatch))(Header);
+    })(Header);

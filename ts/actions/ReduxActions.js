@@ -62,13 +62,12 @@ export function errorsAction(apiError){
         payload:apiError
     })
 }
-
-export function getUserData(userData){
+    export const isLoggedIn = (isLogged)=>{
     return({
-        type:"getData",
-        payload: userData
+        type:"isLogged",
+        payload: isLogged
     })
-}
+};
+
 window.addEventListener('resize',()=>store.dispatch(WindowResize()));
-window.addEventListener('onload',()=>store.dispatch(WindowResize()));
 

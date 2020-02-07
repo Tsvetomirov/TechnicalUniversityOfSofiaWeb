@@ -4,7 +4,7 @@ import {WindowReducer} from "./WindowReducer"
 import {AnimationReducer} from "./AnimationReducer"
 import {inViewPort} from "./ElementReducers";
 import {mobileMenuReducer} from "./MobileMenuReducer";
-import {printErrors, UserData} from "./LoginValidation";
+import {isLoggedIn, printErrors} from "./LoginValidation";
 import {ServerReducer} from "./ServerReducer";
 import {SliderReducer} from "./SliderReducer";
 import {SliderContentReducer} from "./SliderContentReducer";
@@ -20,7 +20,7 @@ export const combinedReducers = combineReducers({
     serverReducer: ServerReducer,
     sliderReducer: SliderReducer,
     sliderContentReducer: SliderContentReducer,
-    userData: UserData
+    isLogged: isLoggedIn
 });
 
 export const store = createStore(combinedReducers);

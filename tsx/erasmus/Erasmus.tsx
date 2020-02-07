@@ -4,11 +4,13 @@ import SubHeader from "../common/HeaderSubPages";
 import ViewType from "../../ts/strictTypes/WindowReducersStrictTypes/SubTypes/CompareViewTypes";
 import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
-import {WindowResize} from "../../ts/actions/ReduxActions";
+import {WindowResize, isLoggedIn} from "../../ts/actions/ReduxActions";
 
 interface ErasmusProps {
-    windowReducers: {windowReducers:{height:number, width:number, viewType: string}},
+    windowReducers: {height:number, width:number, viewType: string}
     windowActionCreator: ()=>{type: "string", payload: any}
+    isLoggedIn: any
+    loggedInAction: (boolean: boolean)=>{}
 }
 class Erasmus extends React.Component<ErasmusProps>{
     constructor(props){
@@ -20,6 +22,18 @@ class Erasmus extends React.Component<ErasmusProps>{
         await fetch('http://localhost/server/API.php?querySearch=erasmus')
             .then(result => result.json())
             .then(result => this.setState({apiCall:result.erasmus}));
+
+            fetch("../../server/isLoggedIn.php",{
+            method:"POST",
+                headers:{
+                "Authorization":`Bearer ${Utils.getCookie("ACCESS_TOKEN")}`
+            },
+            body:JSON.stringify({
+                ACCESS_TOKEN: Utils.getCookie("ACCESS_TOKEN")
+            })
+        })
+                .then(resultToJson=>resultToJson.json())
+                .then((result)=>{return result[0] ? this.props.loggedInAction(true) : this.props.loggedInAction(false)})
     }
 
     render(){
@@ -88,11 +102,13 @@ class Erasmus extends React.Component<ErasmusProps>{
 }
 export default connect((mapStateToProps)=>{
     return({
-        windowReducers: mapStateToProps.windowReducers
+        windowReducers: mapStateToProps.windowReducers,
+        isLoggedIn: mapStateToProps.isLogged
 })
 },
     (actionsToProps)=>{
     return(bindActionCreators({
-        windowActionCreator: WindowResize
+        windowActionCreator: WindowResize,
+        loggedInAction: isLoggedIn
     },actionsToProps));
     })(Erasmus);

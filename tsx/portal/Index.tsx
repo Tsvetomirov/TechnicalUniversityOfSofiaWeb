@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import {bindActionCreators} from "redux";
 import {connect} from 'react-redux';
 import {Courses} from "./IndexElements/IndexElements";
-import {staticContent, WindowResize} from "../../ts/actions/ReduxActions";
+import {staticContent, WindowResize, isLoggedIn} from "../../ts/actions/ReduxActions";
 import Utils from "../../ts/Utils";
 import LiveCounter from "./IndexElements/LiveCounter";
 import {Testimonials} from "./IndexElements/Testimonials";
@@ -19,6 +19,8 @@ interface IndexProps{
     windowReducers: WindowReducerObject;
     contentActionCreator: ()=>{type:string, payload: boolean};
     windowActionCreator: ()=>{type:string, payload: boolean};
+    isLoggedIn: any;
+    loggedInAction: (boolean: boolean)=>{};
 }
 class Root extends React.Component<IndexProps>{
 
@@ -46,6 +48,19 @@ class Root extends React.Component<IndexProps>{
             )
         );
     };
+        componentDidMount(): void {
+            fetch("../../server/isLoggedIn.php",{
+                method:"POST",
+                headers:{
+                    "Authorization":`Bearer ${Utils.getCookie("ACCESS_TOKEN")}`
+                },
+                body:JSON.stringify({
+                    ACCESS_TOKEN: Utils.getCookie("ACCESS_TOKEN")
+                })
+            })
+                .then(resultToJson=>resultToJson.json())
+                .then((result)=>{return result[0] ? this.props.loggedInAction(true) : this.props.loggedInAction(false)})
+        }
     public render (){
         return(
             <div className={this.props.windowReducers.viewType === ViewType.LANDSCAPE
@@ -127,11 +142,13 @@ export default connect((o: any, ownProps) =>{
     return({
         mainPageStaticReducer: o.mainPageStaticReducer,
         windowReducers: o.windowReducers,
+        isLoggedIn: o.isLogged
     })
 },
     (obj) => {
     return bindActionCreators({
         contentActionCreator: staticContent,
-        windowActionCreator: WindowResize
+        windowActionCreator: WindowResize,
+        loggedInAction: isLoggedIn
     }, obj)}
     )(Root);

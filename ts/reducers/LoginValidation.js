@@ -1,3 +1,5 @@
+import Utils from "../Utils";
+
 export function printErrors(state={}, object){
     switch(object.type){
         case "error":
@@ -6,9 +8,9 @@ export function printErrors(state={}, object){
             return state;
     }
 }
-export function UserData(state={}, object){
+export function isLoggedIn(state={}, object){
     switch(object.type) {
-        case "getData":
+        case "isLogged":
             return object.payload;
         default:
             return state;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import ViewType from "../../ts/strictTypes/WindowReducersStrictTypes/SubTypes/CompareViewTypes";
 import SubHeader from "../common/HeaderSubPages";
 import {connect} from 'react-redux';
-import {WindowResize, errorsAction, getUserData} from "../../ts/actions/ReduxActions";
+import {WindowResize, errorsAction, isLoggedIn} from "../../ts/actions/ReduxActions";
 import WindowReducerObject from "../../ts/strictTypes/WindowReducersStrictTypes/WindowReducerObject";
 import {bindActionCreators} from "redux";
 import {RefObject} from "react";
@@ -13,8 +13,8 @@ interface props{
     resize: ()=>{type:string, payload: number};
     printErrors: (errors: [])=>{};
     showErrors: any;
-    getUserData: (userData)=>{};
-    userData: any;
+    isLoggedIn: any;
+    loggedInAction: (boolean: boolean)=>{};
 }
 
 class Login extends React.Component<props>{
@@ -26,7 +26,6 @@ class Login extends React.Component<props>{
         this.props.resize();
         this.username = React.createRef();
         this.password = React.createRef();
-        sessionStorage.clear();
     }
     countRequests(): number{
         Utils.isNotNull(sessionStorage.getItem("requestCount")) && this.requestIsSent === 1
@@ -43,7 +42,7 @@ class Login extends React.Component<props>{
                 },
                 body: JSON.stringify(
                     {"credentials":
-        {
+                            {
                                 "username":Utils.isNotNull(this.username) &&
                                     this.username.current.value,
                                 "password":Utils.isNotNull(this.password) &&
@@ -54,8 +53,9 @@ class Login extends React.Component<props>{
                 .then(res=>res.json())
                 .then((result)=>{
                     if(result[0] === true){
-                        this.props.getUserData(result.userData);
-                        //window.location.href = "/portal/index.html";
+                        //redirecting
+                        let expire = new Date(result['expire']);
+                        document.cookie = "ACCESS_TOKEN = "+result['ACCESS_TOKEN']+"; expires="+expire.toUTCString();
                     }else{
                         this.props.printErrors(result);
                     }
@@ -63,12 +63,26 @@ class Login extends React.Component<props>{
                 .catch((error)=>this.props.printErrors(error)));
             this.requestIsSent = 1;
     }
+    componentDidMount(): void {
+        fetch("../../server/isLoggedIn.php",{
+            method:"POST",
+            headers:{
+                "Authorization":`Bearer ${Utils.getCookie("ACCESS_TOKEN")}`
+            },
+            body:JSON.stringify({
+                ACCESS_TOKEN: Utils.getCookie("ACCESS_TOKEN")
+            })
+        })
+            .then(resultToJson=>resultToJson.json())
+            .then((result)=>{return result[0] ? this.props.loggedInAction(true) : this.props.loggedInAction(false)})
+    }
     public render(){
         return(
+            this.props.isLoggedIn? <div>Raboti</div> :
             <div className={this.props.windowReducers.viewType === ViewType.LANDSCAPE
                 ? "body landscape"
                 : "body portrait"}>
-                <SubHeader windowReducer={this.props.windowReducers}/>
+                <SubHeader windowReducer={this.props.windowReducers} isLoggedIn={this.props.isLoggedIn}/>
                 <div id="primary" className="content-area">
                     <div className="row">
                         <div className="col-md-6 col-md-offset-3">
@@ -155,13 +169,13 @@ export default connect((mapStateToProps)=>{
     return{
         windowReducers: mapStateToProps.windowReducers,
         showErrors: mapStateToProps.printErrors,
-        userData: mapStateToProps.userData
+        isLoggedIn: mapStateToProps.isLogged
     }
 },
     (dispatch)=>{
     return bindActionCreators({
         resize: WindowResize,
         printErrors: errorsAction,
-        getUserData: getUserData
+        loggedInAction: isLoggedIn
     }, dispatch)
 })(Login)
